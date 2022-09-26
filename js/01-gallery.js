@@ -39,5 +39,7 @@ gallery.onclick = (event) => {
 };
 
 document.addEventListener('keydown', (event) => {
-  event.code === 'Escape' ? instance.close() : null;
+  if (instance.visible() && event.code === 'Escape') {
+    instance.close();
+  }
 });

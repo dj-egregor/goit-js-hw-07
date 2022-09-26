@@ -26,14 +26,18 @@ const gallery = document.querySelector('div.gallery');
 
 gallery.append(...arrElemGallery);
 
+let instance = {};
+
 gallery.onclick = (event) => {
   if (event.target.nodeName !== 'IMG') {
     return;
   }
-  const instance = basicLightbox.create(`<img src="${event.target.dataset.source}">`);
+  instance = basicLightbox.create(`<img src="${event.target.dataset.source}">`);
   instance.show();
-  gallery.addEventListener('keydown', (event) => {
-    event.code === 'Escape' ? instance.close() : null;
-  });
+
   event.preventDefault();
 };
+
+document.addEventListener('keydown', (event) => {
+  event.code === 'Escape' ? instance.close() : null;
+});
